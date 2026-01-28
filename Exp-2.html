@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Job App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #eef0ff;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header h1 {
+      color: #4b4bff;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background-color: white;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4b4bff;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 25px;
+    }
+
+    .category {
+      background-color: white;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .job-card {
+      background-color: white;
+      width: 90%;
+      max-width: 350px;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .job-card h2 {
+      color: #4b4bff;
+      margin-bottom: 8px;
+    }
+
+    .job-card p {
+      margin-bottom: 6px;
+    }
+
+    .job-card button {
+      margin-top: 10px;
+      padding: 10px 25px;
+      background-color: #4b4bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .job-card button:hover {
+      background-color: #3a3aff;
+    }
+
+    footer {
+      background-color: #4b4bff;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .categories {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Find Your Dream Job</h1>
+    <p>Explore categories and apply easily</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Jobs</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="categories">
+    <div class="category">IT</div>
+    <div class="category">Design</div>
+    <div class="category">Marketing</div>
+    <div class="category">Finance</div>
+  </div>
+
+  <div class="job-list">
+
+    <div class="job-card">
+      <h2>UI/UX Designer</h2>
+      <p>Company: Google</p>
+      <p>Salary: $5k - $8k</p>
+      <button>Apply</button>
+    </div>
+
+    <div class="job-card">
+      <h2>iOS Developer</h2>
+      <p>Company: Apple</p>
+      <p>Salary: $6k - $10k</p>
+      <button>Apply</button>
+    </div>
+
+    <div class="job-card">
+      <h2>Frontend Developer</h2>
+      <p>Company: Microsoft</p>
+      <p>Salary: $4k - $7k</p>
+      <button>Apply</button>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Simple Job App</p>
+  </footer>
+
+</body>
+</html>
