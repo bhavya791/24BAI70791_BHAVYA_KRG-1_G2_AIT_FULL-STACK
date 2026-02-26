@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Search Form</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6ff;
+    padding:20px;
+}
+h2{
+    text-align:center;
+}
+.container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+.form-box, .profile-box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 8px rgba(0,0,0,0.1);
+    flex:1;
+    min-width:280px;
+}
+label{
+    font-weight:bold;
+}
+input, select{
+    width:100%;
+    padding:8px;
+    margin:6px 0 12px;
+}
+button{
+    width:100%;
+    padding:10px;
+    background:#6c63ff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+button:hover{
+    background:#554fd8;
+}
+.profile-box p{
+    background:#eef0ff;
+    padding:8px;
+    border-radius:5px;
+}
+@media (max-width:768px){
+    .container{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h2>Job Search Form</h2>
+
+<div class="container">
+
+<div class="form-box">
+    <label>Name</label>
+    <input type="text" id="name">
+
+    <label>Email</label>
+    <input type="email" id="email">
+
+    <label>Job Role</label>
+    <input type="text" id="job">
+
+    <label>Experience (years)</label>
+    <input type="number" id="exp">
+
+    <label>Location</label>
+    <input type="text" id="loc">
+
+    <label>Job Type</label>
+    <select id="type">
+        <option>Full Time</option>
+        <option>Part Time</option>
+        <option>Internship</option>
+    </select>
+
+    <button id="submitBtn">Submit</button>
+</div>
+
+<div class="profile-box">
+<h3>User Profile</h3>
+<p><b>Name:</b> <span id="pname">-</span></p>
+<p><b>Email:</b> <span id="pemail">-</span></p>
+<p><b>Job Role:</b> <span id="pjob">-</span></p>
+<p><b>Experience:</b> <span id="pexp">-</span></p>
+<p><b>Location:</b> <span id="ploc">-</span></p>
+<p><b>Job Type:</b> <span id="ptype">-</span></p>
+</div>
+
+</div>
+
+<script>
+document.getElementById("submitBtn").addEventListener("click", function(){
+    document.getElementById("pname").innerText = document.getElementById("name").value;
+    document.getElementById("pemail").innerText = document.getElementById("email").value;
+    document.getElementById("pjob").innerText = document.getElementById("job").value;
+    document.getElementById("pexp").innerText = document.getElementById("exp").value + " years";
+    document.getElementById("ploc").innerText = document.getElementById("loc").value;
+    document.getElementById("ptype").innerText = document.getElementById("type").value;
+    alert("Profile Generated Successfully!");
+});
+</script>
+
+</body>
+</html>
