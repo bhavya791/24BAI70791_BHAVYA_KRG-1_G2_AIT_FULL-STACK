@@ -1,170 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dynamic Job Cards</title>
-
 <style>
 body{
-    font-family: "Segoe UI", sans-serif;
-    background:  #fbc2eb;
-    padding:20px;
+margin:0;
+font-family:Segoe UI,Arial;
+background:#d698b8;
 }
-
-h2{
-    text-align:center;
-    color:#333;
+header{
+background:#ff6fa1;
+color:white;
+padding:25px;
+text-align:center;
+border-bottom-left-radius:30px;
+border-bottom-right-radius:30px;
 }
-
 .form-box{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 8px 15px rgba(0,0,0,0.1);
-    max-width:500px;
-    margin:20px auto;
+background:white;
+width:90%;
+max-width:500px;
+margin:30px auto;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
-
-label{
-    font-weight:600;
+input,textarea,button{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:15px;
 }
-
-input, textarea{
-    width:100%;
-    padding:10px;
-    margin:6px 0 12px;
-    border-radius:10px;
-    border:1px solid #ccc;
-    outline:none;
-}
-
 button{
-    width:100%;
-    padding:12px;
-    background:#a66cff;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
+background:#ff6fa1;
+color:white;
+border:none;
+cursor:pointer;
 }
-
 button:hover{
-    background:#8c52ff;
+background:#ff4f8b;
 }
-
-.jobs{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap:15px;
-    margin-top:20px;
+.cards{
+display:grid;
+gap:15px;
+padding:20px;
 }
-
-.job-card{
-    background:white;
-    padding:15px;
-    border-radius:15px;
-    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+.card{
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
 }
-
-
-.job-card h3{
-    margin:0;
-    color:#6c3cff;
-}
-
-.job-card p{
-    margin:5px 0;
-}
-
-.job-card span{
-    font-weight:bold;
-}
-
-.remove-btn{
-    margin-top:10px;
-    background:#ff6b6b;
-    border:none;
-    color:white;
-    padding:6px 10px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:14px;
-}
-
-.remove-btn:hover{
-    background:#e64545;
-}
-
-@media (max-width:600px){
-    .form-box{
-        margin:10px;
-    }
+.card h3{
+color:#ff6fa1;
+margin:5px 0;
 }
 </style>
 </head>
 
 <body>
 
-<h2> Job Posting Form </h2>
+<header>
+<h1>Job Posting Form</h1>
+<p>Create and view job cards dynamically</p>
+</header>
 
 <div class="form-box">
-    <label>Job Title</label>
-    <input type="text" id="title">
-
-    <label>Company Name</label>
-    <input type="text" id="company">
-
-    <label>Location</label>
-    <input type="text" id="location">
-
-    <label>Job Description</label>
-    <textarea id="description"></textarea>
-
-    <button id="addJob">Add Job</button>
+<form id="jobForm">
+<input type="text" id="title" placeholder="Job Title" required>
+<input type="text" id="company" placeholder="Company Name" required>
+<input type="text" id="location" placeholder="Location" required>
+<textarea id="description" placeholder="Job Description" required></textarea>
+<button type="submit">Post Job</button>
+</form>
 </div>
 
-<h2> Available Jobs</h2>
-<div class="jobs" id="jobList"></div>
+<div class="cards" id="jobCards">
+<div class="card">
+<h3>Web Developer</h3>
+<p><b>Company:</b> CodeWave</p>
+<p><b>Location:</b> Delhi</p>
+<p>Build and maintain modern websites.</p>
+</div>
+<div class="card">
+<h3>UI Designer</h3>
+<p><b>Company:</b> PixelLab</p>
+<p><b>Location:</b> Mumbai</p>
+<p>Design user-friendly interfaces.</p>
+</div>
+</div>
 
 <script>
-document.getElementById("addJob").addEventListener("click", function(){
-
-    let title = document.getElementById("title").value;
-    let company = document.getElementById("company").value;
-    let location = document.getElementById("location").value;
-    let description = document.getElementById("description").value;
-
-    if(title=="" || company=="" || location=="" || description==""){
-        alert("Please fill all fields before adding a job card.");
-        return;
-    }
-
-    let card = document.createElement("div");
-    card.className = "job-card";
-
-    card.innerHTML = `
-        <h3>${title}</h3>
-        <p><span>Company:</span> ${company}</p>
-        <p><span>Location:</span> ${location}</p>
-        <p><span>Description:</span> ${description}</p>
-        <button class="remove-btn">Remove</button>
-    `;
-
-    card.querySelector(".remove-btn").addEventListener("click", function(){
-        card.remove();
-    });
-
-    document.getElementById("jobList").appendChild(card);
-
-    document.getElementById("title").value = "";
-    document.getElementById("company").value = "";
-    document.getElementById("location").value = "";
-    document.getElementById("description").value = "";
-
-    alert("Job Card Added Successfully ");
-});
+jobForm.onsubmit=function(e){
+e.preventDefault()
+let card=document.createElement("div")
+card.className="card"
+card.innerHTML="<h3>"+title.value+"</h3><p><b>Company:</b> "+company.value+"</p><p><b>Location:</b> "+location.value+"</p><p>"+description.value+"</p>"
+jobCards.appendChild(card)
+jobForm.reset()
+}
 </script>
 
 </body>
