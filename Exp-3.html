@@ -3,77 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Job Search Form</title>
+<title>Job Search Portal</title>
 
 <style>
 body{
-    font-family: Arial, sans-serif;
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
     background:#f4f6ff;
-    padding:20px;
 }
-h2{
-    text-align:center;
-}
-.container{
+
+header{
+    background:#5b6cff;
+    color:white;
+    padding:15px 30px;
     display:flex;
-    gap:20px;
-    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
 }
-.form-box, .profile-box{
+
+.hero{
+    background: linear-gradient(to right,#5b6cff,#8f94fb);
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.main{
+    padding:30px;
+}
+
+.form-box{
     background:white;
     padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 8px rgba(0,0,0,0.1);
-    flex:1;
-    min-width:280px;
+    border-radius:12px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+    max-width:500px;
+    margin: auto;
 }
+
 label{
-    font-weight:bold;
+    font-weight:600;
 }
+
 input, select{
     width:100%;
-    padding:8px;
-    margin:6px 0 12px;
+    padding:10px;
+    margin:6px 0 14px;
+    border-radius:8px;
+    border:1px solid #ccc;
 }
+
 button{
     width:100%;
-    padding:10px;
-    background:#6c63ff;
+    padding:12px;
+    background:#5b6cff;
     color:white;
     border:none;
-    border-radius:5px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:16px;
 }
+
 button:hover{
-    background:#554fd8;
+    background:#4756d8;
 }
+
+.jobs{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap:15px;
+    margin-top:30px;
+}
+
+.job-card{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+
+.job-card h3{
+    margin:0;
+    color:#5b6cff;
+}
+
+.profile-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+    margin-top:30px;
+}
+
 .profile-box p{
     background:#eef0ff;
     padding:8px;
-    border-radius:5px;
-}
-@media (max-width:768px){
-    .container{
-        flex-direction:column;
-    }
+    border-radius:6px;
 }
 </style>
 </head>
 
 <body>
 
-<h2>Job Search Form</h2>
+<header>
+    <h2>MyJobPortal</h2>
+    <div>Home | Jobs | Contact</div>
+</header>
 
-<div class="container">
+<div class="hero">
+    <h1>Find Your Next Job</h1>
+    <p>Search from available opportunities</p>
+</div>
+
+<div class="main">
 
 <div class="form-box">
+    <h3>Job Search Form</h3>
+
     <label>Name</label>
     <input type="text" id="name">
 
     <label>Email</label>
     <input type="email" id="email">
 
-    <label>Job Role</label>
+    <label>Preferred Role</label>
     <input type="text" id="job">
 
     <label>Experience (years)</label>
@@ -89,29 +142,54 @@ button:hover{
         <option>Internship</option>
     </select>
 
-    <button id="submitBtn">Submit</button>
+    <button id="submitBtn">Generate Profile</button>
 </div>
 
-<div class="profile-box">
-<h3>User Profile</h3>
-<p><b>Name:</b> <span id="pname">-</span></p>
-<p><b>Email:</b> <span id="pemail">-</span></p>
-<p><b>Job Role:</b> <span id="pjob">-</span></p>
-<p><b>Experience:</b> <span id="pexp">-</span></p>
-<p><b>Location:</b> <span id="ploc">-</span></p>
-<p><b>Job Type:</b> <span id="ptype">-</span></p>
+<h2>Available Jobs</h2>
+<div class="jobs">
+    <div class="job-card">
+        <h3>Web Developer</h3>
+        <p>Company: TechSoft</p>
+        <p>Location: Delhi</p>
+    </div>
+
+    <div class="job-card">
+        <h3>Data Analyst</h3>
+        <p>Company: DataCorp</p>
+        <p>Location: Bangalore</p>
+    </div>
+
+    <div class="job-card">
+        <h3>UI/UX Designer</h3>
+        <p>Company: CreativeLabs</p>
+        <p>Location: Mumbai</p>
+    </div>
+</div>
+
+<div class="profile-box" id="profile" style="display:none;">
+    <h3>User Profile</h3>
+    <p><b>Name:</b> <span id="pname"></span></p>
+    <p><b>Email:</b> <span id="pemail"></span></p>
+    <p><b>Preferred Role:</b> <span id="pjob"></span></p>
+    <p><b>Experience:</b> <span id="pexp"></span></p>
+    <p><b>Location:</b> <span id="ploc"></span></p>
+    <p><b>Job Type:</b> <span id="ptype"></span></p>
 </div>
 
 </div>
 
 <script>
 document.getElementById("submitBtn").addEventListener("click", function(){
+
+    document.getElementById("profile").style.display = "block";
+
     document.getElementById("pname").innerText = document.getElementById("name").value;
     document.getElementById("pemail").innerText = document.getElementById("email").value;
     document.getElementById("pjob").innerText = document.getElementById("job").value;
     document.getElementById("pexp").innerText = document.getElementById("exp").value + " years";
     document.getElementById("ploc").innerText = document.getElementById("loc").value;
     document.getElementById("ptype").innerText = document.getElementById("type").value;
+
     alert("Profile Generated Successfully!");
 });
 </script>
